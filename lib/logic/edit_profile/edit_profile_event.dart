@@ -38,8 +38,8 @@ class ChangePhone extends EditProfileEvent{
 }
 
 class ChangeAddress extends EditProfileEvent{
-  final String address;
-  const ChangeAddress(this.address);
+  final String address;const ChangeAddress(this.address);
+
   @override
   List<Object?> get props => [address];
 }

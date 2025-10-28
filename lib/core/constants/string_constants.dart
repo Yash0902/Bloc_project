@@ -47,7 +47,8 @@ class StringConstants {
   static const String favoriteProducts = 'Favorite Products';
   static const String favoriteProductsNotAvailable = 'Favorite Products not available....';
   static const String update = 'Update';
-  static const String addNewAddress = 'Add new address';
+  static const String addNewAddress = 'Add new Address';
+  static const String EditAddress = "Edit Address";
   static const String selectAddressType = 'Select address type';
   static const String houseNumber = 'House Number';
   static const String enterHere = 'Enter Here...';

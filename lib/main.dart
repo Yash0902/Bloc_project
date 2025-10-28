@@ -32,11 +32,12 @@ class MyApp extends StatelessWidget {
         // Add other global blocs here
       ],
       child: ScreenUtilInit(
-        designSize: const Size(375, 812), // iPhone 11 as design reference
+        designSize: const Size(375, 820),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
+
             title: 'Bloc Project',
             navigatorKey: NavigationService.navigatorKey,
             theme: AppTheme.lightTheme,

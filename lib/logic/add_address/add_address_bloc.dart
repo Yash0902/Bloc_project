@@ -20,6 +20,8 @@ class AddAddressBloc extends Bloc<AddAddressEvent,AddAddressState>{
       ));
     });
     on<ClickOnAddNewAddressButton>(_clickOnAddressButton);
+
+
   }
 
   void _clickOnAddressButton(ClickOnAddNewAddressButton event,Emitter<AddAddressState> emit) async{

@@ -1,3 +1,4 @@
+import 'package:bloc_project/core/navigation/navigation_service.dart';
 import 'package:bloc_project/data/models/get_user_model.dart';
 import 'package:bloc_project/logic/edit_profile/edit_profile_event.dart';
 import 'package:bloc_project/logic/edit_profile/edit_profile_state.dart';
@@ -35,6 +36,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent,EditProfileState>{
         phone: state.phone,address: state.address,image: state.userModel!.image)
     ));
     emit(state.copyWith(isSubmitting: false,isFailure: false,isSuccess: true));
+    NavigationService.navigatorKey.currentState!.pop();
 
   }
 }

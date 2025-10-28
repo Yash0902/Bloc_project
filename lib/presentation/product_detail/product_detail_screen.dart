@@ -23,7 +23,7 @@ class ProductDetailScreen extends StatelessWidget{
     @override
   Widget build(BuildContext context) {
       return BlocProvider(
-          create: (_) => ProductDetailBloc()..add(ProductLoaded(product)),
+        create: (_) => ProductDetailBloc()..add(ProductLoaded(product)),
         child: Scaffold(
           backgroundColor: AppColors.backGroundColor,
           appBar: CommonWidgets.appBar(title: StringConstants.productDetail),
@@ -39,7 +39,6 @@ class ProductDetailScreen extends StatelessWidget{
               ),),
             child: BlocListener<ProductDetailBloc,ProductDetailState>(
                 listener: (context,state){
-
                 },
               child: BlocBuilder<ProductDetailBloc,ProductDetailState>(builder: (context,state){
                 if (state is ProductDetailLoading) {

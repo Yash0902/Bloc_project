@@ -14,13 +14,20 @@ class AddNewDeliveryAddress extends DeliveryAddressEvent {
   @override
   List<Object?> get props => [address];
 }
-class UpdateDeliveryAddress extends DeliveryAddressEvent {
-  final Address address;
 
-  UpdateDeliveryAddress(this.address);
+
+class AddressId extends DeliveryAddressEvent {
+  final int addressid;
+
+  AddressId(this.addressid);
 
   @override
-  List<Object?> get props => [address];
+  List<Object?> get props => [addressid];
+}
+
+class UpdateAddress extends DeliveryAddressEvent{
+  final Address address;
+  UpdateAddress(this.address);
 }
 
 class RemoveDeliveryAddress extends DeliveryAddressEvent {

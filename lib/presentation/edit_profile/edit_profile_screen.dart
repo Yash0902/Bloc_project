@@ -157,9 +157,11 @@ class _EditProfileState extends State<EditProfileScreen>{
                                 onPressed: (){
                                   if(_formKey.currentState!.validate()){
                                      context.read<EditProfileBloc>().add(UpdateProfileData());
+
                                   }else{
 
                                   }
+
                                 },
                                 context: context,
                                 showLoading: state.isSubmitting,

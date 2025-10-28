@@ -37,3 +37,7 @@ class ClickOnAddNewAddressButton extends AddAddressEvent{
    @override
   List<Object?> get props => [currentLength];
 }
+
+class UpdateButton extends AddAddressEvent{
+
+}

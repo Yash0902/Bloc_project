@@ -90,10 +90,15 @@ class _PersonScreenState extends State<PersonScreen> {
                                     width: 2.w,
                                   ),
                                 ),
-                                child: CommonWidgets.appIcons(
-                                  assetName: state.userModel?.image ?? '',
-                                  height: 100,
-                                ),
+                                child: InkWell(
+                                  onTap:(){
+                                     print("image jhxisjcodk jijiaoskdco  idjsaocoikv isjdisjc");
+                                  },
+                                   child: CommonWidgets.appIcons(
+                                     assetName: state.userModel?.image ?? '',
+                                     height: 100,
+                                   ),
+                                )
                               ),
                               CommonWidgets.verticalSpace(height: 20),
                               Text(

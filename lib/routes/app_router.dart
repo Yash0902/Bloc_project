@@ -1,3 +1,4 @@
+import 'package:bloc_project/data/models/get_address_model.dart';
 import 'package:bloc_project/data/models/get_user_model.dart';
 import 'package:bloc_project/presentation/add_address/add_address_screen.dart';
 import 'package:bloc_project/presentation/bottom_nav/bottom_nav_screen.dart';
@@ -33,44 +34,41 @@ class AppRoutes {
   static const String cacheReel = '/cache_reel';
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
-    final args = settings.arguments;
-    print(settings.name);
-
+    final args = settings.arguments ;
     switch (settings.name) {
       case splash:
-      // return MaterialPageRoute(builder: (_) => const SplashScreen());
+        // return MaterialPageRoute(builder: (_) => const SplashScreen());
         return MaterialPageRoute(builder: (_) => BottomNavScreen());
-
       case login:
-       return MaterialPageRoute(builder: (_) => LoginScreen());
-       case signup:
-       return MaterialPageRoute(builder: (_) => SignUpScreen());
-       case bottomNav:
-       return MaterialPageRoute(builder: (_) => BottomNavScreen());
-       case productDetail:
-         if (args is Product) {
-           return MaterialPageRoute(
-             builder: (_) => ProductDetailScreen(product: args),
-           );
-         }else{
-           return _errorRoutes('Need to pass product detail...');
-         }
+        return MaterialPageRoute(builder: (_) => LoginScreen());
+      case signup:
+        return MaterialPageRoute(builder: (_) => SignUpScreen());
+      case bottomNav:
+        return MaterialPageRoute(builder: (_) => BottomNavScreen());
+      case productDetail:
+        if (args is Product) {
+          return MaterialPageRoute(
+            builder: (_) => ProductDetailScreen(product: args),
+          );
+        } else {
+          return _errorRoutes('Need to pass product detail...');
+        }
 
       case home:
-        // return MaterialPageRoute(
-        //   builder: (_) => HomeScreen(
-        //     username: (args as Map)['username'],
-        //   ),
-        // );
+      // return MaterialPageRoute(
+      //   builder: (_) => HomeScreen(
+      //     username: (args as Map)['username'],
+      //   ),
+      // );
 
       case editProfile:
-      if (args is UserModel) {
-        return MaterialPageRoute(
-          builder: (_)=> EditProfileScreen(userModel: args),
-        );
-      } else {
-        return _errorRoutes('Need to pass user data detail...');
-      }
+        if (args is UserModel) {
+          return MaterialPageRoute(
+            builder: (_) => EditProfileScreen(userModel: args),
+          );
+        } else {
+          return _errorRoutes('Need to pass user data detail...');
+        }
       case orderHistory:
         return MaterialPageRoute(builder: (_) => OrderHistoryScreen());
       case cacheReel:
@@ -79,10 +77,17 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => SettingScreen());
       case notifications:
         return MaterialPageRoute(builder: (_) => NotificationScreen());
-        case deliveryAddress:
-        return MaterialPageRoute(builder: (_) => DeliveryAddressScreen());
+      case deliveryAddress:
+        return MaterialPageRoute(builder: (_) => DeliveryAddressScreen(
+        ));
       case addAddress:
-        return MaterialPageRoute(builder: (_) => AddAddressScreen());
+        if(args is Address){
+          return MaterialPageRoute(builder: (_) => AddAddressScreen(address:args));
+        }
+        else{
+          return MaterialPageRoute(builder: (_) => AddAddressScreen());
+        }
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
@@ -91,7 +96,8 @@ class AppRoutes {
         );
     }
   }
-  static MaterialPageRoute _errorRoutes(String errorMassage){
+
+  static MaterialPageRoute _errorRoutes(String errorMassage) {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
         body: Center(child: Text('No route defined for $errorMassage')),

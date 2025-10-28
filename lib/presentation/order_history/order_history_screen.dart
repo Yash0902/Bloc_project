@@ -53,18 +53,14 @@ class OrderHistoryScreen extends StatelessWidget{
                                          ,
                                        ),
                                        Expanded(
-                                         child: Container(
-                                           height: 90.h,
-                                           padding:  EdgeInsets.only(left: 10.w,top: 10.h,bottom: 10.h),
-                                           child: Column(
-                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: [
-                                               Text(item.title,style: AppTextStyle.titleStyle16bw,),
-                                               Text('\$ ${item.price}',style: AppTextStyle.titleStyle14gr,),
-                                               Text('Completed',style: AppTextStyle.titleStyle14bw,),
-                                             ],
-                                           ),
+                                         child: Column(
+                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                           children: [
+                                             Text(item.title,style: AppTextStyle.titleStyle16bw,),
+                                             Text('\$ ${item.price}',style: AppTextStyle.titleStyle14gr,),
+                                             Text('Completed',style: AppTextStyle.titleStyle14bw,),
+                                           ],
                                          ),
                                        )
                                      ],
