@@ -65,7 +65,7 @@ dev_dependencies:
   intl: ^0.20.2
   simple_gradient_text: ^1.3.0
   #image_picker....
-  image_picker: ^1.1.2
+  image_picker: ^0.8.7+4
   image_cropper: ^9.1.0
   #Reel required dependency  ...
   video_player: ^2.10.0

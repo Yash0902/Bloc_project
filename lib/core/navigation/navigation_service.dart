@@ -24,7 +24,8 @@ class NavigationService {
   }
 
   /// Go back to first route
-  static void popUntilRoot() {
+  static void popUntilRoot(){
     navigatorKey.currentState?.popUntil((route) => route.isFirst);
   }
+
 }

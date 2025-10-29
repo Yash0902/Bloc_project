@@ -302,31 +302,51 @@ class CommonWidgets {
     );
   }
 
-  static Widget appIcons(
-      {required String assetName,
-      double? width,
-      double? height,
-      double? borderRadius,
-      Color? color,
-      BoxFit? fit}) {
+  static Widget appIcons({
+    String? assetName,
+    File? fileImage,
+    double? width,
+    double? height,
+    double? borderRadius,
+    Color? color,
+    BoxFit? fit,
+  }) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius ?? 4.r),
-      child: Image.asset(
-        assetName==''?IconConstants.icMinus:assetName,
-        height: height ?? 24.h,
-        width: width ?? 24.w,
-        color: color,
-        fit: fit ?? BoxFit.fill,
-        errorBuilder: (context, error, stackTrace) {
-          return SizedBox(
-            height: height ?? 24.h,
-            width: width ?? 24.w,
-          );
+      borderRadius: BorderRadius.circular(borderRadius ?? 4),
+      child: Builder(
+        builder: (context) {
+          if (fileImage != null) {
+
+            return Image.file(
+              fileImage,
+              height: height ?? 24,
+              width: width ?? 24,
+              fit: fit ?? BoxFit.cover,
+            );
+          } else if (assetName != null && assetName.isNotEmpty) {
+
+            return Image.asset(
+              assetName,
+              height: height ?? 24,
+              width: width ?? 24,
+              color: color,
+              fit: fit ?? BoxFit.cover,
+              errorBuilder: (_, __, ___) => SizedBox(
+                height: height ?? 24,
+                width: width ?? 24,
+              ),
+            );
+          } else {
+
+            return SizedBox(
+              height: height ?? 24,
+              width: width ?? 24,
+            );
+          }
         },
       ),
     );
   }
-
 
   static Widget verticalSpace({double? height}){
     return SizedBox(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc_project/core/colors/colors.dart';
 import 'package:bloc_project/core/constants/icons_constant.dart';
 import 'package:bloc_project/core/constants/length.dart';
@@ -68,14 +70,17 @@ class _PersonScreenState extends State<PersonScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 10,
-
-                                ),
+                                padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Align(
-                                  child:IconButton(onPressed: (){
-                                    NavigationService.pushNamed(AppRoutes.editProfile,arguments: state.userModel);
-                                  }, icon: Icon(Icons.edit)),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      NavigationService.pushNamed(
+                                        AppRoutes.editProfile,
+                                        arguments: state.userModel,
+                                      );
+                                    },
+                                    icon: Icon(Icons.edit),
+                                  ),
                                   alignment: Alignment.topRight,
                                 ),
                               ),
@@ -91,14 +96,34 @@ class _PersonScreenState extends State<PersonScreen> {
                                   ),
                                 ),
                                 child: InkWell(
-                                  onTap:(){
-                                     print("image jhxisjcodk jijiaoskdco  idjsaocoikv isjdisjc");
+                                  onTap: () {
+                                    print(
+                                      "image jhxisjcodk jijiaoskdco  idjsaocoikv isjdisjc",
+                                    );
                                   },
-                                   child: CommonWidgets.appIcons(
-                                     assetName: state.userModel?.image ?? '',
-                                     height: 100,
-                                   ),
-                                )
+                                  child: CircleAvatar(
+                                    radius: 60,
+                                    backgroundColor: AppColors.primary2,
+                                    backgroundImage:
+                                        (state.userModel?.image != null &&
+                                            state.userModel!.image!.isNotEmpty)
+                                        ? (state.userModel!.image!.startsWith(
+                                                'http',
+                                              )
+                                              ? NetworkImage(
+                                                  state.userModel!.image!,
+                                                )
+                                              : FileImage(
+                                                      File(
+                                                        state.userModel!.image!,
+                                                      ),
+                                                    )
+                                                    as ImageProvider)
+                                        : const AssetImage(
+                                            "assets/images/dog.png",
+                                          ),
+                                  ),
+                                ),
                               ),
                               CommonWidgets.verticalSpace(height: 20),
                               Text(

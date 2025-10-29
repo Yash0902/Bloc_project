@@ -46,3 +46,7 @@ class ChangeAddress extends EditProfileEvent{
 class UpdateProfileData extends EditProfileEvent{
 
 }
+
+class PickImageFormGallery extends EditProfileEvent{}
+
+class PickImageFormCamera extends EditProfileEvent{}

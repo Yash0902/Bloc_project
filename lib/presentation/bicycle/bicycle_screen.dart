@@ -47,6 +47,7 @@ class BiCycleScreen extends StatelessWidget {
           child: MultiBlocListener(
             listeners: [
               BlocListener<FavoriteBloc, FavoriteState>(
+
                 listener: (context, state) {
                   if (state is FavoriteListUpdated) {
                     context.read<BiCycleBloc>().add(LoadProducts());

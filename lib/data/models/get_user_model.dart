@@ -1,4 +1,8 @@
-class UserModel {
+import 'dart:io';
+
+import 'package:equatable/equatable.dart';
+
+class UserModel extends Equatable {
   String? id;
   String? name;
   String? email;
@@ -15,7 +19,7 @@ class UserModel {
        email : json['email'],
        phone : json['phone'],
        address : json['address'],
-   image : json['image']
+       image : json['image']
    );
   }
 
@@ -23,12 +27,15 @@ class UserModel {
     return UserModel(
         id: id??this.id,
         name: name??this.name,
-        email: name??this.email,
+        email: email??this.email,
         phone: phone ?? this.phone,
         address: address ?? this.address,
         image: image ?? this.image,
 
     );
   }
+
+  @override
+  List<Object?> get props => [id,name,email,phone,address,image];
 
 }

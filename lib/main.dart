@@ -1,5 +1,7 @@
 import 'package:bloc_project/logic/bottom_nav/bottom_nav_bloc.dart';
 import 'package:bloc_project/logic/delivery_address/delivery_address_bloc.dart';
+import 'package:bloc_project/logic/edit_profile/edit_profile_bloc.dart';
+import 'package:bloc_project/logic/edit_profile/edit_profile_event.dart';
 import 'package:bloc_project/logic/person/person_bloc.dart';
 import 'package:bloc_project/routes/app_router.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +26,13 @@ class MyApp extends StatelessWidget {
         // BlocProvider<SplashBloc>(
         //   create: (_) => SplashBloc(),
         // ),
+        BlocProvider(create: (_)=>EditProfileBloc()),
         BlocProvider(create: (_) => BottomNavBloc()),
         BlocProvider(create: (_) => CartBloc()),
         BlocProvider(create: (_) => PersonBloc()),
         BlocProvider(create: (_) => FavoriteBloc()),
-        BlocProvider(create: (_) => DeliveryAddressBloc()),
+        BlocProvider(create: (_) => DeliveryAddressBloc(),
+        ),
         // Add other global blocs here
       ],
       child: ScreenUtilInit(
