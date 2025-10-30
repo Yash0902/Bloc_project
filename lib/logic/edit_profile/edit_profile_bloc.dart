@@ -16,11 +16,12 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
           email: event.userModel.email,
           name: event.userModel.name,
           phone: event.userModel.phone,
-          address: event.userModel.address,
         ),
       );
     });
+
     on<UpdateProfileData>(_updateProfileData);
+
     on<ChangeEmail>((event, emit) {
       emit(state.copyWith(email: event.email));
     });
@@ -114,7 +115,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       name: state.name,
       email: state.email,
       phone: state.phone,
-      address: state.address,
       image: state.selectedImage?.path ?? state.userModel!.image,
     );
 

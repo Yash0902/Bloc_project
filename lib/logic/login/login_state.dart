@@ -1,4 +1,6 @@
+import 'package:bloc_project/data/models/get_user_model.dart';
 import 'package:equatable/equatable.dart';
+
 
 class LoginState extends Equatable {
   final String email;
@@ -6,6 +8,7 @@ class LoginState extends Equatable {
   final bool isSubmitting;
   final bool isSuccess;
   final bool isFailure;
+  final UserModel? userModel;
 
   const LoginState({
     required this.email,
@@ -13,15 +16,17 @@ class LoginState extends Equatable {
     required this.isSubmitting,
     required this.isSuccess,
     required this.isFailure,
+    this.userModel,
   });
 
   factory LoginState.initial() {
-    return LoginState(
+    return const LoginState(
       email: '',
       password: '',
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
+      userModel: null,
     );
   }
 
@@ -31,6 +36,7 @@ class LoginState extends Equatable {
     bool? isSubmitting,
     bool? isSuccess,
     bool? isFailure,
+    UserModel? userModel,
   }) {
     return LoginState(
       email: email ?? this.email,
@@ -38,9 +44,11 @@ class LoginState extends Equatable {
       isSubmitting: isSubmitting ?? this.isSubmitting,
       isSuccess: isSuccess ?? this.isSuccess,
       isFailure: isFailure ?? this.isFailure,
+      userModel: userModel ?? this.userModel,
     );
   }
 
   @override
-  List<Object> get props => [email, password, isSubmitting, isSuccess, isFailure];
+  List<Object?> get props =>
+      [email, password, isSubmitting, isSuccess, isFailure, userModel];
 }

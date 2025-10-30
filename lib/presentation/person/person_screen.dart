@@ -19,6 +19,7 @@ import '../../core/constants/string_constants.dart';
 import '../../data/models/get_user_model.dart';
 
 class PersonScreen extends StatefulWidget {
+
   const PersonScreen({super.key});
 
   @override

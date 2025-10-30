@@ -35,16 +35,14 @@ class _EditProfileState extends State<EditProfileScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    context.read<EditProfileBloc>().add(FetchProfileData(widget.userModel));
     emailController.text = widget.userModel.email ?? '';
     nameController.text = widget.userModel.name ?? '';
     phoneController.text = widget.userModel.phone ?? '';
-    addressController.text = widget.userModel.address ?? '';
-    context.read<EditProfileBloc>().add(FetchProfileData(widget.userModel));
   }
 
   @override
@@ -52,7 +50,7 @@ class _EditProfileState extends State<EditProfileScreen> {
     emailController.dispose();
     nameController.dispose();
     phoneController.dispose();
-    addressController.dispose();
+
     super.dispose();
   }
 
@@ -124,7 +122,10 @@ class _EditProfileState extends State<EditProfileScreen> {
               ),
               child: SafeArea(
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 10.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 40.w,
+                    vertical: 10.h,
+                  ),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -138,12 +139,10 @@ class _EditProfileState extends State<EditProfileScreen> {
                             radius: 60,
                             backgroundImage: state.selectedImage != null
                                 ? FileImage(state.selectedImage!)
-                                : const AssetImage("assets/images/dog.png")
-                            as ImageProvider,
+                                : FileImage(File(widget.userModel.image!)),
                           ),
                         ),
                         CommonWidgets.verticalSpace(height: 20),
-
 
                         CommonWidgets.commonTextField(
                           controller: nameController,
@@ -156,7 +155,6 @@ class _EditProfileState extends State<EditProfileScreen> {
                               .add(ChangeName(value)),
                         ),
 
-
                         CommonWidgets.commonTextField(
                           controller: emailController,
                           validator: InputValidators.validateEmail,
@@ -168,8 +166,8 @@ class _EditProfileState extends State<EditProfileScreen> {
                               .add(ChangeEmail(value)),
                         ),
 
-
                         CommonWidgets.commonTextField(
+                          enable: false,
                           controller: phoneController,
                           validator: InputValidators.validatePhone,
                           hintText: StringConstants.enterPhone,
@@ -180,38 +178,14 @@ class _EditProfileState extends State<EditProfileScreen> {
                               .add(ChangePhone(value)),
                         ),
 
-
-                        CommonWidgets.commonTextField(
-                          controller: addressController,
-                          validator: InputValidators.validateField,
-                          hintText: StringConstants.enterAddress,
-                          labelText: StringConstants.address,
-                          keyboardType: TextInputType.name,
-                          onChanged: (value) => context
-                              .read<EditProfileBloc>()
-                              .add(ChangeAddress(value)),
-                        ),
-
-                        CommonWidgets.commonTextField(
-                          controller: addressController,
-                          validator: InputValidators.validateField,
-                          hintText: StringConstants.enterAddress,
-                          labelText: StringConstants.address,
-                          keyboardType: TextInputType.name,
-                          onChanged: (value) => context
-                              .read<EditProfileBloc>()
-                              .add(ChangeAddress(value)),
-                        ),
-
                         CommonWidgets.verticalSpace(height: 30),
-
 
                         CommonWidgets.customBackgroundFrame(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              context
-                                  .read<EditProfileBloc>()
-                                  .add(UpdateProfileData());
+                              context.read<EditProfileBloc>().add(
+                                UpdateProfileData(),
+                              );
                             }
                           },
                           context: context,
@@ -231,7 +205,6 @@ class _EditProfileState extends State<EditProfileScreen> {
             );
           },
         ),
-
       ),
     );
   }

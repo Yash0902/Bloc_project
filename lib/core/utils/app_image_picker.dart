@@ -42,7 +42,7 @@ class AppImagePickerAndCropper {
                   imagePicker =
                   await ImagePicker().pickImage(source: ImageSource.camera);
                 } catch (e) {
-                  //handle error
+
                   print('e:::::::::::::${e}');
                 }
                 NavigationService.pop();
@@ -60,7 +60,7 @@ class AppImagePickerAndCropper {
                   imagePicker = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
                 } catch (e) {
-                  //handle error
+
                   print('e:::::::::::::${e}');
                 }
                 NavigationService.pop();

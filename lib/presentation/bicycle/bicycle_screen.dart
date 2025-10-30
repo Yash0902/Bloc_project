@@ -236,7 +236,9 @@ class BiCycleScreen extends StatelessWidget {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+
+                              },
                               child: Container(
                                 height: 50.h,
                                 width: 50.h,

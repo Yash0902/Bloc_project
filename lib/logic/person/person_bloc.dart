@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:bloc_project/core/constants/icons_constant.dart';
 import 'package:bloc_project/core/constants/image_constants.dart';
 import 'package:bloc_project/core/navigation/navigation_service.dart';
 import 'package:bloc_project/core/widgets/common_widgets.dart';
 import 'package:bloc_project/data/models/get_user_model.dart';
+import 'package:bloc_project/logic/login/login_bloc.dart';
 import 'package:bloc_project/logic/person/person_event.dart';
 import 'package:bloc_project/logic/person/person_state.dart';
 import 'package:bloc_project/logic/splash/splash_bloc.dart';
@@ -12,22 +15,17 @@ import 'package:bloc_project/routes/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PersonBloc extends Bloc<PersonEvent, PersonState> {
-  PersonBloc() : super(PersonInitial()) {
+  final LoginBloc loginBloc;
+  PersonBloc(this.loginBloc) : super(PersonInitial()) {
     on<PersonDataLoad>((event, emit) {
-      emit(PersonLoading());
 
-      emit(
-        PersonState(
-          userModel: UserModel(
-            id: '1',
-            name: "Arvind Kumar",
-            email: 'arvind@gmail.com',
-            phone: '9352792687',
-            address: 'Indore ,Vijay Nagar',
-            image: ImageConstants.imgHelmet,
-          ),
-        ),
-      );
+      final loggedInUser = loginBloc.state.userModel;
+      if (loggedInUser == null) {
+        emit(PersonError("No logged-in user found"));
+        return;
+      }
+      emit(PersonLoading());
+      emit(PersonState(userModel: loggedInUser));
     });
 
     on<ClickOnItemMenu>(_clickOnItemMenu);

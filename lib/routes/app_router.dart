@@ -32,6 +32,7 @@ class AppRoutes {
   static const String deliveryAddress = '/delivery_address';
   static const String addAddress = '/add_address';
   static const String cacheReel = '/cache_reel';
+  static const String personDetail = '/personDetail';
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments ;
@@ -80,6 +81,11 @@ class AppRoutes {
       case deliveryAddress:
         return MaterialPageRoute(builder: (_) => DeliveryAddressScreen(
         ));
+
+      // case personDetail:
+      //   if(args is UserModel){
+      //     return MaterialPageRoute(builder: (_) =>);
+      //   }
       case addAddress:
         if(args is Address){
           return MaterialPageRoute(builder: (_) => AddAddressScreen(address:args));
@@ -87,6 +93,7 @@ class AppRoutes {
         else{
           return MaterialPageRoute(builder: (_) => AddAddressScreen());
         }
+
 
       default:
         return MaterialPageRoute(

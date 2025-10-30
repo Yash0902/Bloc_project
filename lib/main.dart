@@ -2,7 +2,9 @@ import 'package:bloc_project/logic/bottom_nav/bottom_nav_bloc.dart';
 import 'package:bloc_project/logic/delivery_address/delivery_address_bloc.dart';
 import 'package:bloc_project/logic/edit_profile/edit_profile_bloc.dart';
 import 'package:bloc_project/logic/edit_profile/edit_profile_event.dart';
+import 'package:bloc_project/logic/login/login_bloc.dart';
 import 'package:bloc_project/logic/person/person_bloc.dart';
+import 'package:bloc_project/logic/signup/signup_bloc.dart';
 import 'package:bloc_project/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,12 +28,20 @@ class MyApp extends StatelessWidget {
         // BlocProvider<SplashBloc>(
         //   create: (_) => SplashBloc(),
         // ),
+        BlocProvider(create: (_)=>SignUpBloc()),
+        BlocProvider(create: (context)=>LoginBloc(
+          context.read<SignUpBloc>(),
+        )),
+
         BlocProvider(create: (_)=>EditProfileBloc()),
         BlocProvider(create: (_) => BottomNavBloc()),
         BlocProvider(create: (_) => CartBloc()),
-        BlocProvider(create: (_) => PersonBloc()),
+        BlocProvider(create: (context) => PersonBloc(
+          context.read<LoginBloc>(),
+        )),
         BlocProvider(create: (_) => FavoriteBloc()),
         BlocProvider(create: (_) => DeliveryAddressBloc(),
+
         ),
         // Add other global blocs here
       ],
@@ -41,13 +51,12 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
-
             title: 'Bloc Project',
             navigatorKey: NavigationService.navigatorKey,
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.light,
-            initialRoute: '/bottom_nav', //     /bottom_nav
+            initialRoute: '/login',
             onGenerateRoute: AppRoutes.onGenerateRoute,
             debugShowCheckedModeBanner: false,
           );

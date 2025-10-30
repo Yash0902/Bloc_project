@@ -20,7 +20,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
       ) {
     final product = event.product;
     final updatedProduct = product.copyWith(isFavorite: !product.isFavorite);
-    List<Product> updatedFavoriteItems = List.from(state.favoriteProducts);
+    final updatedFavoriteItems = List<Product>.from(state.favoriteProducts);
 
     if (updatedProduct.isFavorite) {
       updatedFavoriteItems.add(updatedProduct);

@@ -14,8 +14,8 @@ class FetchProfileData extends EditProfileEvent{
   const FetchProfileData(this.userModel);
   @override
   List<Object?> get props => [userModel];
-
 }
+
 class ChangeEmail extends EditProfileEvent{
   final String email;
   const ChangeEmail(this.email);

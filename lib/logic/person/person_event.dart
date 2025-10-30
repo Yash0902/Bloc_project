@@ -8,9 +8,11 @@ abstract class PersonEvent extends Equatable{
   @override
   List<Object?> get props => [];
 }
+
 class PersonDataLoad extends PersonEvent{
 
 }
+
 class PersonDataUpdate extends PersonEvent{
   final UserModel? userModel;
   const PersonDataUpdate(this.userModel);

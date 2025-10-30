@@ -473,6 +473,7 @@ class CommonWidgets {
       {Key? key,
       double? elevation,
       String? hintText,
+        bool? enable,
       String? labelText,
       String? errorText,
       EdgeInsetsGeometry? contentPadding,
